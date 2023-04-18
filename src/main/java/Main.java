@@ -4,19 +4,18 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 class Main {
+    public static final String OUTPUT_FILE_NAME = "solutions.txt";
 
     public static void main(String[] args) throws FileNotFoundException {
-        String fileName = "operations.txt";
-        File file = FileUtils.createNewFile(fileName);
+        String inputFileName = "operations.txt";
+        File file = new File(inputFileName);
 
         int lines = FileUtils.getLinesNumber(file);
-        Scanner scanner = new Scanner(file);
-        String[] inputLines = FileUtils.getInputLines(scanner, lines);
+        String[] inputLines = FileUtils.getInputLines(file, lines);
 
         double[] result = FileUtils.getResult(lines, inputLines);
 
-        fileName = "solutions.txt";
-        file = FileUtils.createNewFile(fileName);
-        FileUtils.printResultsToFile(file, lines, inputLines, result);
+        File outputFile = new File(OUTPUT_FILE_NAME);
+        FileUtils.printResultsToFile(outputFile, inputLines, result);
     }
 }
